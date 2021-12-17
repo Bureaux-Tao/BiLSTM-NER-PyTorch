@@ -152,3 +152,9 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# My Ignore
+weights/bilstm_*.pth
+datasets/*.txt
+datasets/*.pkl
+log/nohup_*.out
+
