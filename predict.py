@@ -49,8 +49,9 @@ def get_entity(sentence, tags):
 
 if __name__ == '__main__':
     model = BiLSTM_CRF(Config())
+    saved_model_name = "bilstm_crf_ep9.pth"
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model.load_state_dict(torch.load(path.weights_path + path.saved_model_name, map_location = torch.device(device)))
+    model.load_state_dict(torch.load(path.weights_path + saved_model_name, map_location = torch.device(device)))
     sentence = '右横隔见数枚肿大淋巴结较前退缩，现显示不清（4:9）。左肺下叶后基底段见不规则结节灶较前稍缩小，现最大截面约1.1*0.9mm（7.15），边界尚清；右肺中下叶见散在数枚直径小于0.5cm的模糊小结节影与前大致相仿（7:18、30、36）；双肺尖见少许斑片、条索影较前无明显变化，余肺野未见明显实质性病变。'
     tags = predict_sentence_tags(model, sentence, dct, device)
     print(get_entity(sentence, tags))

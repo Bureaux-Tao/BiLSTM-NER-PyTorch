@@ -42,13 +42,14 @@ def plot(history):
     # 损失函数
     plt.subplot(1, 2, 1)
     plt.plot(train_process.epoch, train_process.loss, "ro-", label = "Train loss")
+    plt.plot(train_process.epoch, train_process.val_loss, "ro-", label = "Val loss")
     plt.legend()
     plt.xlabel("epoch")
     plt.ylabel("loss")
     # 精度
     plt.subplot(1, 2, 2)
     plt.plot(train_process.epoch, train_process.acc, "ro-", label = "Train acc")
-    plt.plot(train_process.epoch, train_process.test_acc, "bs-", label = "Test acc")
+    plt.plot(train_process.epoch, train_process.val_acc, "bs-", label = "Val acc")
     plt.xlabel("epoch")
     plt.ylabel("acc")
     plt.legend()
@@ -74,10 +75,11 @@ test_dl = DataLoader(test_ds, batch_size = BATCH_SIZE)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 ##
 model = BiLSTM_CRF(Config())
+saved_model_name = "bilstm_crf.pth"
 # load saved model
-if os.path.isfile(path.weights_path + path.saved_model_name):
-    print('load weight from ' + path.weights_path + path.saved_model_name)
-    model.load_state_dict(torch.load(path.weights_path + path.saved_model_name, map_location = torch.device(device)))
+if os.path.isfile(path.weights_path + saved_model_name):
+    print('load weight from ' + path.weights_path + saved_model_name)
+    model.load_state_dict(torch.load(path.weights_path + saved_model_name, map_location = torch.device(device)))
 
 model = model.to(device)
 lr = 0.001  # 加载模型重新训练需要调整到上次的学习率
@@ -96,8 +98,8 @@ pms.summary(model, sequence_cuda.long(), tags_cuda.long(), mask_cuda.long(),
 
 ##
 # train model
-history = train(model, optimizer, train_dl, test_dl, device = device, epochs = 10, reduce_lr_epochs = 2,
-                early_stop_epochs = 5, weights_save_path = path.saved_model_name)
+history = train(model, optimizer, train_dl, test_dl, device = device, epochs = 20, reduce_lr_epochs = 2,
+                early_stop_epochs = 5, weights_save_path = saved_model_name, save_each_epoch = True, clip_grad = 5.0)
 
 plot(history)
 

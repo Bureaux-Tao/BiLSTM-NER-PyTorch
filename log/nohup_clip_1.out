@@ -1,0 +1,80 @@
+/Users/Bureaux/miniconda3/envs/Torch_ner/bin/python "/Users/Bureaux/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P/ch-0/213.5744.248/PyCharm.app/Contents/plugins/python/helpers/pydev/pydevconsole.py" --mode=client --port=59957
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.extend(['/Volumes/Riesling/TRAIN/Torch-base/src/BiLSTM_CRF'])
+Python 3.7.11 (default, Jul 27 2021, 07:03:16)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.30.1 -- An enhanced Interactive Python. Type '?' for help.
+v console: using IPython 7.30.1
+Python 3.7.11 (default, Jul 27 2021, 07:03:16)
+[Clang 10.0.0 ] on darwin
+>>> runfile('/Volumes/Riesling/TRAIN/Torch-base/src/BiLSTM_CRF/main.py', wdir='/Volumes/Riesling/TRAIN/Torch-base/src/BiLSTM_CRF')
+-----------------------------------------------------------------------------------------------------------
+               Layer (type)                                    Input Shape         Param #     Tr. Param #
+===========================================================================================================
+                Embedding-1                                      [100, 32]         180,300         180,300
+                     LSTM-2     [100, 32, 300], [2, 32, 128], [2, 32, 128]         440,320         440,320
+                  Dropout-3                                 [100, 32, 256]               0               0
+                     LSTM-4       [100, 32, 256], [2, 32, 64], [2, 32, 64]         164,864         164,864
+                  Dropout-5                                 [100, 32, 128]               0               0
+                   Linear-6                                 [32, 100, 128]           3,741           3,741
+                  Dropout-7                                  [32, 100, 29]               0               0
+   ConditionalRandomField-8            [32, 100, 29], [32, 100], [32, 100]           1,860             899
+===========================================================================================================
+Total params: 791,085
+Trainable params: 790,124
+Non-trainable params: 961
+-----------------------------------------------------------------------------------------------------------
+training on  cpu
+epoch [1]: 100%|██████████| 29/29 [00:13<00:00,  2.10it/s, loss=53.6]
+2021-12-19 16:00:49,539 - epoch 1 - loss: 53.6495 acc: 0.0922 val_loss: 30.0603 val_acc: 0.0821
+epoch [2]: 100%|██████████| 29/29 [00:13<00:00,  2.21it/s, loss=31.3]
+2021-12-19 16:01:07,616 - epoch 2 - loss: 31.3283 acc: 0.5580 val_loss: 18.1591 val_acc: 0.4928
+epoch [3]: 100%|██████████| 29/29 [00:12<00:00,  2.28it/s, loss=22.6]
+2021-12-19 16:01:25,338 - epoch 3 - loss: 22.5956 acc: 0.6956 val_loss: 13.7651 val_acc: 0.6232
+epoch [4]: 100%|██████████| 29/29 [00:13<00:00,  2.16it/s, loss=18.6]
+2021-12-19 16:01:43,731 - epoch 4 - loss: 18.5560 acc: 0.7594 val_loss: 11.2294 val_acc: 0.6957
+epoch [5]: 100%|██████████| 29/29 [00:13<00:00,  2.21it/s, loss=15.8]
+2021-12-19 16:02:01,754 - epoch 5 - loss: 15.7910 acc: 0.8037 val_loss: 10.4775 val_acc: 0.7053
+epoch [6]: 100%|██████████| 29/29 [00:12<00:00,  2.24it/s, loss=14]
+2021-12-19 16:02:19,728 - epoch 6 - loss: 14.0327 acc: 0.8462 val_loss: 9.2906 val_acc: 0.7617
+epoch [7]: 100%|██████████| 29/29 [00:13<00:00,  2.23it/s, loss=12.6]
+2021-12-19 16:02:37,710 - epoch 7 - loss: 12.6351 acc: 0.8658 val_loss: 9.2053 val_acc: 0.7762
+epoch [8]: 100%|██████████| 29/29 [00:13<00:00,  2.21it/s, loss=11.4]
+2021-12-19 16:02:55,740 - epoch 8 - loss: 11.3957 acc: 0.8877 val_loss: 8.7832 val_acc: 0.7681
+epoch [9]: 100%|██████████| 29/29 [00:13<00:00,  2.20it/s, loss=10.6]
+2021-12-19 16:03:13,788 - epoch 9 - loss: 10.5731 acc: 0.9100 val_loss: 9.0303 val_acc: 0.7890
+EarlyStopping counter: 1 out of 5
+epoch [10]: 100%|██████████| 29/29 [00:13<00:00,  2.22it/s, loss=9.65]
+2021-12-19 16:03:31,863 - epoch 10 - loss: 9.6483 acc: 0.9150 val_loss: 9.0835 val_acc: 0.7794
+EarlyStopping counter: 2 out of 5
+epoch [11]: 100%|██████████| 29/29 [00:13<00:00,  2.21it/s, loss=9.07]
+2021-12-19 16:03:49,970 - epoch 11 - loss: 9.0730 acc: 0.9250 val_loss: 9.3808 val_acc: 0.7617
+EarlyStopping counter: 3 out of 5
+Epoch    11: reducing learning rate of group 0 to 5.0000e-04.
+epoch [12]: 100%|██████████| 29/29 [00:13<00:00,  2.18it/s, loss=8.41]
+2021-12-19 16:04:08,226 - epoch 12 - loss: 8.4109 acc: 0.9364 val_loss: 9.2572 val_acc: 0.7810
+EarlyStopping counter: 4 out of 5
+epoch [13]: 100%|██████████| 29/29 [00:13<00:00,  2.20it/s, loss=7.8]
+2021-12-19 16:04:26,368 - epoch 13 - loss: 7.7991 acc: 0.9405 val_loss: 9.6014 val_acc: 0.7697
+EarlyStopping counter: 5 out of 5
+Early stopping after epoch 13
+predicting training set: 100%|██████████| 29/29 [00:04<00:00,  7.14it/s]
+Train set
+            ANATOMY     SIGN        QUANTITY    ORGAN       TEXTURE     DISEASE     DENSITY     BOUNDARY    MARGIN      DIAMETER    SHAPE       TREATMENT   LUNGFIELD   NATURE
+precision   0.928       0.943       0.984       0.841       0.926       0.932       0.968       1.000       0.963       0.952       0.808       0.914       1.000       0.941
+recall      0.918       0.944       0.938       0.810       0.893       0.915       1.000       1.000       1.000       0.952       0.875       0.889       0.957       1.000
+f1          0.923       0.944       0.961       0.825       0.909       0.923       0.984       1.000       0.981       0.952       0.840       0.901       0.978       0.970
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+precision   0.938
+recall      0.927
+f1          0.933
+predicting test set: 100%|██████████| 5/5 [00:00<00:00,  7.29it/s]
+Test set
+            ANATOMY     SIGN        QUANTITY    ORGAN       TEXTURE     DISEASE     DENSITY     BOUNDARY    MARGIN      DIAMETER    SHAPE       TREATMENT   LUNGFIELD   NATURE
+precision   0.773       0.735       0.892       0.538       0.857       0.651       1.000       0.750       0.667       0.938       0.571       0.444       0.833       1.000
+recall      0.762       0.755       0.860       0.636       1.000       0.609       1.000       1.000       0.800       0.938       1.000       0.286       1.000       1.000
+f1          0.767       0.745       0.876       0.583       0.923       0.629       1.000       0.857       0.727       0.938       0.727       0.348       0.909       1.000
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+precision   0.767
+recall      0.768
+f1          0.767

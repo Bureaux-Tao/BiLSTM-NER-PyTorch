@@ -1,0 +1,238 @@
+/Users/Bureaux/miniconda3/envs/Torch_ner/bin/python "/Users/Bureaux/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P/ch-0/213.5744.248/PyCharm.app/Contents/plugins/python/helpers/pydev/pydevconsole.py" --mode=client --port=54587
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.extend(['/Volumes/Riesling/TRAIN/Torch-base/src/BiLSTM_CRF'])
+Python 3.7.11 (default, Jul 27 2021, 07:03:16)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.30.1 -- An enhanced Interactive Python. Type '?' for help.
+PyDev console: using IPython 7.30.1
+Python 3.7.11 (default, Jul 27 2021, 07:03:16)
+[Clang 10.0.0 ] on darwin
+runfile('/Volumes/Riesling/TRAIN/Torch-base/src/BiLSTM_CRF/main.py', wdir='/Volumes/Riesling/TRAIN/Torch-base/src/BiLSTM_CRF')
+-----------------------------------------------------------------------------------------------------------
+               Layer (type)                                    Input Shape         Param #     Tr. Param #
+===========================================================================================================
+                Embedding-1                                      [100, 32]         180,300         180,300
+                     LSTM-2     [100, 32, 300], [2, 32, 256], [2, 32, 256]       1,142,784       1,142,784
+                     LSTM-3     [100, 32, 512], [2, 32, 128], [2, 32, 128]         657,408         657,408
+                   Linear-4                                 [32, 100, 256]           7,453           7,453
+   ConditionalRandomField-5            [32, 100, 29], [32, 100], [32, 100]           1,860             899
+===========================================================================================================
+Total params: 1,989,805
+Trainable params: 1,988,844
+Non-trainable params: 961
+-----------------------------------------------------------------------------------------------------------
+training on  cpu
+epoch [1]: 100%|██████████| 29/29 [00:26<00:00,  1.10it/s, loss=42.3]
+2021-12-17 10:54:18,337 - epoch 1 - loss: 42.2537 acc: 0.2605 - test_acc: 0.1981
+epoch [2]: 100%|██████████| 29/29 [00:25<00:00,  1.14it/s, loss=16.7]
+2021-12-17 10:54:52,885 - epoch 2 - loss: 16.7416 acc: 0.6763 - test_acc: 0.6248
+epoch [3]: 100%|██████████| 29/29 [00:32<00:00,  1.14s/it, loss=10.2]
+2021-12-17 10:55:39,576 - epoch 3 - loss: 10.2015 acc: 0.7829 - test_acc: 0.7101
+epoch [4]: 100%|██████████| 29/29 [00:31<00:00,  1.08s/it, loss=7.05]
+2021-12-17 10:56:22,014 - epoch 4 - loss: 7.0451 acc: 0.8227 - test_acc: 0.7311
+epoch [5]: 100%|██████████| 29/29 [00:32<00:00,  1.13s/it, loss=5.21]
+2021-12-17 10:57:04,292 - epoch 5 - loss: 5.2055 acc: 0.8708 - test_acc: 0.7520
+epoch [6]: 100%|██████████| 29/29 [00:31<00:00,  1.09s/it, loss=4.07]
+2021-12-17 10:57:48,937 - epoch 6 - loss: 4.0742 acc: 0.9015 - test_acc: 0.7536
+epoch [7]: 100%|██████████| 29/29 [00:36<00:00,  1.27s/it, loss=3.37]
+2021-12-17 10:58:37,970 - epoch 7 - loss: 3.3682 acc: 0.9191 - test_acc: 0.7746
+epoch [8]: 100%|██████████| 29/29 [00:29<00:00,  1.02s/it, loss=2.79]
+2021-12-17 10:59:20,455 - epoch 8 - loss: 2.7887 acc: 0.9262 - test_acc: 0.7536
+epoch [9]: 100%|██████████| 29/29 [00:29<00:00,  1.03s/it, loss=2.26]
+2021-12-17 10:59:59,895 - epoch 9 - loss: 2.2592 acc: 0.9400 - test_acc: 0.7568
+epoch [10]: 100%|██████████| 29/29 [00:28<00:00,  1.03it/s, loss=1.96]
+2021-12-17 11:00:39,083 - epoch 10 - loss: 1.9569 acc: 0.9434 - test_acc: 0.7681
+epoch [11]: 100%|██████████| 29/29 [00:29<00:00,  1.00s/it, loss=1.71]
+2021-12-17 11:01:16,933 - epoch 11 - loss: 1.7099 acc: 0.9562 - test_acc: 0.7794
+epoch [12]: 100%|██████████| 29/29 [00:29<00:00,  1.02s/it, loss=1.51]
+2021-12-17 11:01:57,444 - epoch 12 - loss: 1.5086 acc: 0.9545 - test_acc: 0.7552
+epoch [13]: 100%|██████████| 29/29 [00:33<00:00,  1.14s/it, loss=1.25]
+2021-12-17 11:02:39,783 - epoch 13 - loss: 1.2541 acc: 0.9610 - test_acc: 0.7746
+epoch [14]: 100%|██████████| 29/29 [00:31<00:00,  1.10s/it, loss=1.18]
+2021-12-17 11:03:21,140 - epoch 14 - loss: 1.1814 acc: 0.9642 - test_acc: 0.7601
+epoch [15]: 100%|██████████| 29/29 [00:26<00:00,  1.08it/s, loss=1.05]
+2021-12-17 11:03:58,139 - epoch 15 - loss: 1.0544 acc: 0.9679 - test_acc: 0.7536
+epoch [16]: 100%|██████████| 29/29 [00:30<00:00,  1.06s/it, loss=0.95]
+2021-12-17 11:04:39,268 - epoch 16 - loss: 0.9504 acc: 0.9684 - test_acc: 0.7440
+epoch [17]: 100%|██████████| 29/29 [00:28<00:00,  1.04it/s, loss=0.88]
+2021-12-17 11:05:18,632 - epoch 17 - loss: 0.8802 acc: 0.9731 - test_acc: 0.7810
+epoch [18]: 100%|██████████| 29/29 [00:30<00:00,  1.05s/it, loss=0.786]
+2021-12-17 11:06:02,269 - epoch 18 - loss: 0.7864 acc: 0.9744 - test_acc: 0.7665
+epoch [19]: 100%|██████████| 29/29 [00:32<00:00,  1.12s/it, loss=0.751]
+2021-12-17 11:06:46,208 - epoch 19 - loss: 0.7514 acc: 0.9738 - test_acc: 0.7488
+epoch [20]: 100%|██████████| 29/29 [00:34<00:00,  1.19s/it, loss=0.666]
+2021-12-17 11:07:33,690 - epoch 20 - loss: 0.6663 acc: 0.9748 - test_acc: 0.7762
+epoch [21]: 100%|██████████| 29/29 [00:34<00:00,  1.20s/it, loss=0.698]
+2021-12-17 11:08:19,609 - epoch 21 - loss: 0.6978 acc: 0.9781 - test_acc: 0.7601
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [22]: 100%|██████████| 29/29 [00:32<00:00,  1.11s/it, loss=0.595]
+2021-12-17 11:09:03,718 - epoch 22 - loss: 0.5948 acc: 0.9753 - test_acc: 0.7617
+epoch [23]: 100%|██████████| 29/29 [00:28<00:00,  1.01it/s, loss=0.539]
+2021-12-17 11:09:43,855 - epoch 23 - loss: 0.5394 acc: 0.9781 - test_acc: 0.7488
+epoch [24]: 100%|██████████| 29/29 [00:32<00:00,  1.14s/it, loss=0.52]
+2021-12-17 11:10:28,688 - epoch 24 - loss: 0.5203 acc: 0.9793 - test_acc: 0.7568
+epoch [25]: 100%|██████████| 29/29 [00:32<00:00,  1.13s/it, loss=0.535]
+2021-12-17 11:11:11,082 - epoch 25 - loss: 0.5346 acc: 0.9795 - test_acc: 0.7585
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [26]: 100%|██████████| 29/29 [00:28<00:00,  1.01it/s, loss=0.476]
+2021-12-17 11:11:50,558 - epoch 26 - loss: 0.4765 acc: 0.9758 - test_acc: 0.7536
+epoch [27]: 100%|██████████| 29/29 [00:27<00:00,  1.05it/s, loss=0.471]
+2021-12-17 11:12:27,732 - epoch 27 - loss: 0.4705 acc: 0.9810 - test_acc: 0.7472
+epoch [28]: 100%|██████████| 29/29 [00:27<00:00,  1.06it/s, loss=0.432]
+2021-12-17 11:13:03,949 - epoch 28 - loss: 0.4323 acc: 0.9788 - test_acc: 0.7504
+epoch [29]: 100%|██████████| 29/29 [00:25<00:00,  1.13it/s, loss=0.386]
+2021-12-17 11:13:38,749 - epoch 29 - loss: 0.3860 acc: 0.9823 - test_acc: 0.7665
+epoch [30]: 100%|██████████| 29/29 [00:25<00:00,  1.14it/s, loss=0.38]
+2021-12-17 11:14:13,683 - epoch 30 - loss: 0.3798 acc: 0.9816 - test_acc: 0.7633
+epoch [31]: 100%|██████████| 29/29 [00:31<00:00,  1.09s/it, loss=0.39]
+2021-12-17 11:14:55,306 - epoch 31 - loss: 0.3901 acc: 0.9780 - test_acc: 0.7568
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [32]: 100%|██████████| 29/29 [00:36<00:00,  1.25s/it, loss=0.402]
+2021-12-17 11:15:43,902 - epoch 32 - loss: 0.4023 acc: 0.9764 - test_acc: 0.7424
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [33]: 100%|██████████| 29/29 [00:32<00:00,  1.12s/it, loss=0.35]
+2021-12-17 11:16:28,351 - epoch 33 - loss: 0.3497 acc: 0.9840 - test_acc: 0.7729
+epoch [34]: 100%|██████████| 29/29 [00:32<00:00,  1.12s/it, loss=0.361]
+2021-12-17 11:17:12,628 - epoch 34 - loss: 0.3609 acc: 0.9833 - test_acc: 0.7713
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [35]: 100%|██████████| 29/29 [00:34<00:00,  1.20s/it, loss=0.324]
+2021-12-17 11:17:59,627 - epoch 35 - loss: 0.3238 acc: 0.9835 - test_acc: 0.7488
+epoch [36]: 100%|██████████| 29/29 [00:29<00:00,  1.00s/it, loss=0.336]
+2021-12-17 11:18:39,826 - epoch 36 - loss: 0.3357 acc: 0.9813 - test_acc: 0.7681
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [37]: 100%|██████████| 29/29 [00:29<00:00,  1.01s/it, loss=0.299]
+2021-12-17 11:19:18,062 - epoch 37 - loss: 0.2995 acc: 0.9830 - test_acc: 0.7665
+epoch [38]: 100%|██████████| 29/29 [00:30<00:00,  1.06s/it, loss=0.33]
+2021-12-17 11:19:57,996 - epoch 38 - loss: 0.3303 acc: 0.9838 - test_acc: 0.7681
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [39]: 100%|██████████| 29/29 [00:33<00:00,  1.16s/it, loss=0.274]
+2021-12-17 11:20:44,879 - epoch 39 - loss: 0.2736 acc: 0.9833 - test_acc: 0.7585
+epoch [40]: 100%|██████████| 29/29 [00:28<00:00,  1.02it/s, loss=0.3]
+2021-12-17 11:21:23,878 - epoch 40 - loss: 0.2997 acc: 0.9823 - test_acc: 0.7601
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [41]: 100%|██████████| 29/29 [00:31<00:00,  1.09s/it, loss=0.292]
+2021-12-17 11:22:06,721 - epoch 41 - loss: 0.2922 acc: 0.9817 - test_acc: 0.7697
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [42]: 100%|██████████| 29/29 [00:32<00:00,  1.12s/it, loss=0.291]
+EarlyStopping counter: 3 out of 5
+Epoch    42: reducing learning rate of group 0 to 5.0000e-04.
+2021-12-17 11:22:51,045 - epoch 42 - loss: 0.2907 acc: 0.9813 - test_acc: 0.7617
+epoch [43]: 100%|██████████| 29/29 [00:30<00:00,  1.05s/it, loss=0.231]
+2021-12-17 11:23:33,137 - epoch 43 - loss: 0.2313 acc: 0.9844 - test_acc: 0.7681
+epoch [44]: 100%|██████████| 29/29 [00:28<00:00,  1.03it/s, loss=0.216]
+2021-12-17 11:24:11,278 - epoch 44 - loss: 0.2159 acc: 0.9858 - test_acc: 0.7713
+epoch [45]: 100%|██████████| 29/29 [00:32<00:00,  1.12s/it, loss=0.226]
+2021-12-17 11:24:55,436 - epoch 45 - loss: 0.2258 acc: 0.9853 - test_acc: 0.7665
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [46]: 100%|██████████| 29/29 [00:35<00:00,  1.21s/it, loss=0.219]
+2021-12-17 11:25:41,518 - epoch 46 - loss: 0.2193 acc: 0.9853 - test_acc: 0.7713
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [47]: 100%|██████████| 29/29 [00:30<00:00,  1.06s/it, loss=0.198]
+2021-12-17 11:26:22,809 - epoch 47 - loss: 0.1977 acc: 0.9847 - test_acc: 0.7729
+epoch [48]: 100%|██████████| 29/29 [00:26<00:00,  1.09it/s, loss=0.208]
+2021-12-17 11:27:00,010 - epoch 48 - loss: 0.2077 acc: 0.9850 - test_acc: 0.7697
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [49]: 100%|██████████| 29/29 [00:34<00:00,  1.20s/it, loss=0.216]
+2021-12-17 11:27:47,605 - epoch 49 - loss: 0.2159 acc: 0.9851 - test_acc: 0.7713
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [50]: 100%|██████████| 29/29 [00:29<00:00,  1.01s/it, loss=0.214]
+2021-12-17 11:28:25,902 - epoch 50 - loss: 0.2136 acc: 0.9820 - test_acc: 0.7762
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 3 out of 5
+Epoch    50: reducing learning rate of group 0 to 2.5000e-04.
+epoch [51]: 100%|██████████| 29/29 [00:31<00:00,  1.08s/it, loss=0.19]
+2021-12-17 11:29:09,643 - epoch 51 - loss: 0.1896 acc: 0.9846 - test_acc: 0.7729
+epoch [52]: 100%|██████████| 29/29 [00:32<00:00,  1.11s/it, loss=0.186]
+2021-12-17 11:29:51,639 - epoch 52 - loss: 0.1862 acc: 0.9830 - test_acc: 0.7681
+epoch [53]: 100%|██████████| 29/29 [00:35<00:00,  1.22s/it, loss=0.193]
+2021-12-17 11:30:39,875 - epoch 53 - loss: 0.1925 acc: 0.9836 - test_acc: 0.7729
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [54]: 100%|██████████| 29/29 [00:35<00:00,  1.22s/it, loss=0.188]
+2021-12-17 11:31:26,312 - epoch 54 - loss: 0.1882 acc: 0.9838 - test_acc: 0.7746
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [55]: 100%|██████████| 29/29 [00:34<00:00,  1.18s/it, loss=0.191]
+2021-12-17 11:32:11,975 - epoch 55 - loss: 0.1914 acc: 0.9848 - test_acc: 0.7794
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 3 out of 5
+Epoch    55: reducing learning rate of group 0 to 1.2500e-04.
+epoch [56]: 100%|██████████| 29/29 [00:34<00:00,  1.18s/it, loss=0.182]
+2021-12-17 11:32:56,414 - epoch 56 - loss: 0.1817 acc: 0.9838 - test_acc: 0.7697
+epoch [57]: 100%|██████████| 29/29 [00:26<00:00,  1.09it/s, loss=0.185]
+2021-12-17 11:33:32,349 - epoch 57 - loss: 0.1855 acc: 0.9838 - test_acc: 0.7729
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [58]: 100%|██████████| 29/29 [00:25<00:00,  1.12it/s, loss=0.181]
+2021-12-17 11:34:07,391 - epoch 58 - loss: 0.1810 acc: 0.9836 - test_acc: 0.7697
+epoch [59]: 100%|██████████| 29/29 [00:25<00:00,  1.12it/s, loss=0.183]
+2021-12-17 11:34:42,470 - epoch 59 - loss: 0.1832 acc: 0.9847 - test_acc: 0.7697
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [60]: 100%|██████████| 29/29 [00:25<00:00,  1.12it/s, loss=0.182]
+2021-12-17 11:35:17,502 - epoch 60 - loss: 0.1822 acc: 0.9853 - test_acc: 0.7633
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [61]: 100%|██████████| 29/29 [00:26<00:00,  1.11it/s, loss=0.176]
+2021-12-17 11:35:52,675 - epoch 61 - loss: 0.1764 acc: 0.9853 - test_acc: 0.7649
+epoch [62]: 100%|██████████| 29/29 [00:25<00:00,  1.12it/s, loss=0.18]
+2021-12-17 11:36:27,913 - epoch 62 - loss: 0.1800 acc: 0.9840 - test_acc: 0.7665
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [63]: 100%|██████████| 29/29 [00:25<00:00,  1.12it/s, loss=0.174]
+2021-12-17 11:37:02,967 - epoch 63 - loss: 0.1741 acc: 0.9848 - test_acc: 0.7633
+epoch [64]: 100%|██████████| 29/29 [00:26<00:00,  1.10it/s, loss=0.178]
+2021-12-17 11:37:39,477 - epoch 64 - loss: 0.1776 acc: 0.9845 - test_acc: 0.7681
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 1 out of 5
+epoch [65]: 100%|██████████| 29/29 [00:30<00:00,  1.05s/it, loss=0.177]
+2021-12-17 11:38:20,606 - epoch 65 - loss: 0.1767 acc: 0.9828 - test_acc: 0.7729
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 2 out of 5
+epoch [66]: 100%|██████████| 29/29 [00:30<00:00,  1.05s/it, loss=0.181]
+2021-12-17 11:39:00,810 - epoch 66 - loss: 0.1808 acc: 0.9833 - test_acc: 0.7633
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 3 out of 5
+Epoch    66: reducing learning rate of group 0 to 6.2500e-05.
+epoch [67]: 100%|██████████| 29/29 [00:30<00:00,  1.04s/it, loss=0.178]
+2021-12-17 11:39:41,903 - epoch 67 - loss: 0.1783 acc: 0.9843 - test_acc: 0.7729
+  0%|          | 0/29 [00:00<?, ?it/s]
+EarlyStopping counter: 4 out of 5
+epoch [68]: 100%|██████████| 29/29 [00:27<00:00,  1.07it/s, loss=0.181]
+2021-12-17 11:40:17,957 - epoch 68 - loss: 0.1813 acc: 0.9845 - test_acc: 0.7681
+EarlyStopping counter: 5 out of 5
+Early stopping after epoch 68
+predicting training set: 100%|██████████| 29/29 [00:08<00:00,  3.61it/s]
+predicting test set:   0%|          | 0/5 [00:00<?, ?it/s]
+Train set
+            ANATOMY     SIGN        QUANTITY    ORGAN       TEXTURE     DISEASE     DENSITY     BOUNDARY    MARGIN      DIAMETER    SHAPE       TREATMENT   LUNGFIELD   NATURE
+precision   0.98        0.99        0.99        0.95        1.00        0.99        1.00        1.00        1.00        1.00        1.00        1.00        1.00        1.00
+recall      0.99        0.99        0.98        0.86        1.00        1.00        1.00        1.00        1.00        1.00        1.00        1.00        1.00        1.00
+f1          0.98        0.99        0.99        0.90        1.00        0.99        1.00        1.00        1.00        1.00        1.00        1.00        1.00        1.00
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+precision   0.99
+recall      0.98
+f1          0.98
+predicting test set: 100%|██████████| 5/5 [00:01<00:00,  3.19it/s]
+Test set
+            ANATOMY     SIGN        QUANTITY    ORGAN       TEXTURE     DISEASE     DENSITY     BOUNDARY    MARGIN      DIAMETER    SHAPE       TREATMENT   LUNGFIELD   NATURE
+precision   0.78        0.72        0.87        0.69        0.57        0.63        1.00        0.75        1.00        0.94        0.57        0.67        0.83        1.00
+recall      0.78        0.75        0.83        0.60        0.67        0.52        1.00        1.00        0.86        0.94        1.00        0.40        1.00        1.00
+f1          0.78        0.74        0.85        0.64        0.62        0.57        1.00        0.86        0.92        0.94        0.73        0.50        0.91        1.00
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+precision   0.77
+recall      0.76
+f1          0.76

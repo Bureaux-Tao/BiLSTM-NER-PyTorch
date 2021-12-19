@@ -14,6 +14,7 @@ from trainer import train, evaluate
 
 train_corpus_path = path.train_file_path
 test_corpus_path = path.test_file_path
+saved_model_name = 'bilstm_crf_ep9.pth'
 
 corpus = read_corpus(train_corpus_path)
 dct = build_dict(corpus)
@@ -33,7 +34,7 @@ train_dl = DataLoader(train_ds, batch_size = BATCH_SIZE, shuffle = True, drop_la
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model = BiLSTM_CRF(Config())
-model.load_state_dict(torch.load(path.weights_path + path.saved_model_name, map_location = torch.device(device)))
+model.load_state_dict(torch.load(path.weights_path + saved_model_name, map_location = torch.device(device)))
 
 metric_train = evaluate(model, train_dl, device, toast = "predicting training set", verbose = True)
 print("\nTrain set")

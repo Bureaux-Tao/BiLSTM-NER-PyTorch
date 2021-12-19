@@ -16,7 +16,8 @@ logging.basicConfig(level = logging.INFO, format = "%(asctime)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
-def train_one_epoch(model, optimizer, train_dl, epoch, device):
+def train_one_epoch(model, optimizer, train_dl, epoch, device, clip_grad):
+    model.train()
     steps = 0
     total_loss = 0.
     batch_size = train_dl.batch_size
@@ -35,7 +36,7 @@ def train_one_epoch(model, optimizer, train_dl, epoch, device):
         
         loss.backward()
         
-        _ = torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
+        _ = torch.nn.utils.clip_grad_norm_(model.parameters(), clip_grad)
         
         optimizer.step()
         
@@ -55,48 +56,70 @@ def train_one_epoch(model, optimizer, train_dl, epoch, device):
     return train_loss
 
 
-def train(model, optimizer, train_dl, test_dl, device = None, epochs = 500, reduce_lr_epochs = 3,
-          early_stop_epochs = 10, weights_save_path = path.saved_model_name):
+def validate_one_epoch(model, optimizer, val_dl, device):
+    model.eval()
+    steps = 0
+    total_loss = 0.
+    batch_size = val_dl.batch_size
+    
+    with torch.no_grad():
+        for sequence, tags in val_dl:
+            sequence_cuda = sequence.to(device)
+            tags_cuda = tags.to(device)
+            mask_cuda = sequence_cuda > 0
+            
+            loss = model(sequence_cuda, tags_cuda, mask_cuda)
+            total_loss += loss.item()
+            
+            steps += 1
+    val_loss = total_loss / (steps * batch_size)
+    return val_loss
+
+
+def train(model, optimizer, train_dl, val_dl, device = None, epochs = 500, reduce_lr_epochs = 3,
+          early_stop_epochs = 10, weights_save_path = "checkpoint.pth", save_each_epoch = False,
+          clip_grad = 0.0):
     history = {
         'epoch': [],
         'acc': [],
         'loss': [],
-        'test_acc': [],
+        'val_acc': [],
+        'val_loss': []
     }
     
     reduceLR = ReduceLROnPlateau(optimizer, factor = 0.5, patience = reduce_lr_epochs, min_lr = 1e-9, verbose = True)
     early_stopping = EarlyStopping(patience = early_stop_epochs, verbose = False, save_model = True,
-                                   path = path.weights_path + weights_save_path)
+                                   path = path.weights_path + weights_save_path, save_each_epoch = save_each_epoch)
     
     print('training on ', device)
     
     for epoch in range(1, epochs + 1):
-        model.train()
-        
-        train_loss = train_one_epoch(model, optimizer, train_dl, epoch, device)
+        train_loss = train_one_epoch(model, optimizer, train_dl, epoch, device, clip_grad)
+        val_loss = validate_one_epoch(model, optimizer, val_dl, device)
         
         with torch.no_grad():
-            val_metric = evaluate(model, test_dl, device = device)
+            val_metric = evaluate(model, val_dl, device = device)
             train_metric = evaluate(model, train_dl, device = device)
             
             train_acc = train_metric.global_precision
-            test_acc = val_metric.global_precision
+            val_acc = val_metric.global_precision
         
         history['epoch'].append(epoch)
         history['acc'].append(train_acc)
         history['loss'].append(train_loss)
-        history['test_acc'].append(test_acc)
+        history['val_loss'].append(val_loss)
+        history['val_acc'].append(val_acc)
         
-        logger.info(
-            "epoch {} - loss: {:.4f} acc: {:.4f} - test_acc: {:.4f}\n".format(epoch, train_loss, train_acc, test_acc))
+        logger.info("epoch {} - loss: {:.4f} acc: {:.4f} val_loss: {:.4f} val_acc: {:.4f}\n".
+                    format(epoch, train_loss, train_acc, val_loss, val_acc))
         
-        early_stopping(train_loss, model)
+        early_stopping(val_loss, model, epoch = epoch)
         
         if early_stopping.early_stop:
             print("\nEarly stopping after epoch " + str(epoch))
             break
         
-        reduceLR.step(train_loss)
+        reduceLR.step(val_loss)
     
     return history
 

@@ -44,7 +44,6 @@ epoch [9]: 100%|██████████| 29/29 [00:38<00:00,  1.32s/it, l
 epoch [10]: 100%|██████████| 29/29 [00:36<00:00,  1.26s/it, loss=2.53]
 2021-12-17 14:59:15,809 - epoch 10 - loss: 2.5263 acc: 0.9298 - test_acc: 0.7971
 predicting training set: 100%|██████████| 29/29 [00:08<00:00,  3.46it/s]
-predicting test set:   0%|          | 0/5 [00:00<?, ?it/s]
 Train set
             ANATOMY     SIGN        QUANTITY    ORGAN       TEXTURE     DISEASE     DENSITY     BOUNDARY    MARGIN      DIAMETER    SHAPE       TREATMENT   LUNGFIELD   NATURE
 precision   0.92        0.93        0.97        0.86        0.93        0.95        0.90        1.00        1.00        0.95        0.88        0.91        1.00        1.00

@@ -89,12 +89,12 @@ class NER_Metric:
         precision = self.precision
         f1 = self.f1
         s = ('{:<12}' + '{:<12}' * len(tags)).format('', *tags_name) + '\n'
-        s += ('{:<12}' + '{:<12.2f}' * len(tags)).format('precision', *[precision[tag] for tag in tags]) + '\n'
-        s += ('{:<12}' + '{:<12.2f}' * len(tags)).format('recall', *[recall[tag] for tag in tags]) + '\n'
-        s += ('{:<12}' + '{:<12.2f}' * len(tags)).format('f1', *[f1[tag] for tag in tags]) + '\n'
+        s += ('{:<12}' + '{:<12.3f}' * len(tags)).format('precision', *[precision[tag] for tag in tags]) + '\n'
+        s += ('{:<12}' + '{:<12.3f}' * len(tags)).format('recall', *[recall[tag] for tag in tags]) + '\n'
+        s += ('{:<12}' + '{:<12.3f}' * len(tags)).format('f1', *[f1[tag] for tag in tags]) + '\n'
         s += '-' * (12 * (1 + len(tags))) + '\n'
-        s += '{:<12}{:.2f}'.format('precision', self.global_precision) + '\n'
-        s += '{:<12}{:.2f}'.format('recall', self.global_recall) + '\n'
-        s += '{:<12}{:.2f}'.format('f1', self.global_f1)
+        s += '{:<12}{:.3f}'.format('precision', self.global_precision) + '\n'
+        s += '{:<12}{:.3f}'.format('recall', self.global_recall) + '\n'
+        s += '{:<12}{:.3f}'.format('f1', self.global_f1)
 
         return s

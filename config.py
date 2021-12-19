@@ -11,10 +11,10 @@ BATCH_SIZE = 32
 
 class Config:
     condtraints = condtraints
-    name = "hidden_512_embed_150"
-    hidden_size = 512
+    name = "hidden_256_embed_150"
+    hidden_size = 256
     num_tags = len(TAG_MAP)
     embed_dim = 300
-    dropout = 0.5
+    dropout = 0.2
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     embed_size = len(dct)

@@ -37,15 +37,15 @@ class BiLSTM_CRF(nn.Module):
         c1 = torch.randn(2, batch_size, self.hidden_size // 4, device = sequences.device)
         
         outputs, _ = self.lstm_1(embeded, (h0, c0))
-        # outputs = self.dropout_1(outputs)
+        outputs = self.dropout_1(outputs)
         outputs, _ = self.lstm_2(outputs, (h1, c1))
         
         outputs = self.dropout_2(outputs)
         
         outputs = outputs.transpose(0, 1)  # (batch_size, sequence_len, hidden_size)
         
-        logits = self.linear(outputs)
-        # logits = self.dropout_3(outputs)
+        outputs = self.linear(outputs)
+        logits = self.dropout_3(outputs)
         
         return logits
     
