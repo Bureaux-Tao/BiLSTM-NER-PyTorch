@@ -1,0 +1,15 @@
+{
+  "O": 0,
+  "B-ANATOMY": 1,
+  "I-ANATOMY": 2,
+  "B-TESTIMAGE": 3,
+  "I-TESTIMAGE": 4,
+  "B-DISEASE": 5,
+  "I-DISEASE": 6,
+  "B-OPERATION": 7,
+  "I-OPERATION": 8,
+  "B-DRUG": 9,
+  "I-DRUG": 10,
+  "B-TESTLAB": 11,
+  "I-TESTLAB": 12
+}
