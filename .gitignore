@@ -153,7 +153,4 @@ dmypy.json
 cython_debug/
 
 # My Ignore
-weights/bilstm.pth
-weights/bilstm*reg.pth
-datasets/*.txt
 
